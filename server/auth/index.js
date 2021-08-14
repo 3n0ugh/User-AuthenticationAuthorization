@@ -11,7 +11,7 @@ const router = express.Router();
 const schema = Joi.object({
 	username: Joi.string().alphanum().min(2).max(30).required(),
 
-	password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+	password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).trim(),
 
 	repeat_password: Joi.ref("password"),
 });
@@ -37,7 +37,7 @@ router.post("/signup", (req, res, next) => {
 					next(error);
 				} else {
 					bcrypt
-						.hash(req.body.password, 12)
+						.hash(req.body.password.trim(), 12)
 						.then((hashedPassword) => {
 							const newUser = {
 								username: req.body.username,
