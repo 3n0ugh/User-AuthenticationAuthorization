@@ -34,6 +34,7 @@ router.post("/signup", (req, res, next) => {
 					const error = new Error(
 						"That user name is already taken. Please choose another one."
 					);
+					res.status(409);
 					next(error);
 				} else {
 					bcrypt
@@ -52,6 +53,7 @@ router.post("/signup", (req, res, next) => {
 				}
 			});
 	} else {
+		res.status(422);
 		next(result.error);
 	}
 });
