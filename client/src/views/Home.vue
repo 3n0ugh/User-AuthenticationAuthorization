@@ -10,7 +10,7 @@
         <p>Another hard-to-understand Node.js project.</p>
         <p class="lead">
           <router-link
-            :to="{ name: 'signup' }"
+            to="/signup"
             class="btn btn-primary btn-lg"
             role="button"
           >

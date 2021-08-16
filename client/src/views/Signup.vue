@@ -72,6 +72,7 @@ const schema = Joi.object({
   password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{10,30}$')).trim(),
   confirmPassword: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{10,30}$')).trim(),
 });
+
 export default {
   data: () => ({
     signingUp: false,
