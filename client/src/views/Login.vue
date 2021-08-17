@@ -83,7 +83,8 @@ export default {
           return response.json().then((err) => {
             throw new Error(err.message);
           });
-        }).then(() => {
+        }).then((result) => {
+          localStorage.token = result.token;
           setTimeout(() => {
             this.logingIn = false;
             this.$router.push('/dashboard');
