@@ -23,6 +23,17 @@ function checkTokenSetUser(req, res, next) {
   }
 }
 
+function isLoggedIn(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    const error = new Error('Un-Authorized.');
+    res.status('401');
+    next(error);
+  }
+}
+
 module.exports = {
   checkTokenSetUser,
+  isLoggedIn,
 };

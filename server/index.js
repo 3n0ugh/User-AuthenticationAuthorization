@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const middleware = require('./auth/middlewares');
 const auth = require('./auth');
+const notes = require('./api/notes');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', auth);
+app.use('/api/v1', middleware.isLoggedIn, notes);
 
 function notFound(req, res, next) {
   res.status(404);
