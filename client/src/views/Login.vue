@@ -38,7 +38,20 @@
         Enter a password to login.
         </h5>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">
+        <div class="col">
+          <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        </div>
+        <div class="col">
+          <router-link
+            to="/signup"
+            class="btn btn-primary btn-lg "
+            role="button"
+          >
+            Signup
+          </router-link>
+        </div>
+      </div>
     </form>
   </section>
 </template>
