@@ -14,7 +14,16 @@
             class="btn btn-primary btn-lg"
             role="button"
           >
-            Sign Up
+            Signup
+          </router-link>
+        </p>
+        <p class="lead">
+          <router-link
+            to="/login"
+            class="btn btn-primary btn-lg"
+            role="button"
+          >
+            Login
           </router-link>
         </p>
       </div>
