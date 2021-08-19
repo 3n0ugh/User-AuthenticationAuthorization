@@ -5,14 +5,16 @@
     <div v-if="logingOut" class="text-center">
       <img src="../assets/pacman_loading.svg" />
     </div>
-    <button v-if="!logingOut" @click="logout()" class="btn btn-primary">
-      Logout
-    </button>
-    <br/>
-    <br/>
-    <button v-if="!logingOut" @click="showForm = !showForm" class="btn btn-info">
-      Toggle Form
-    </button>
+    <div class="col-2">
+      <button v-if="!logingOut" @click="logout()" class="btn btn-primary">
+        Logout
+      </button>
+    </div>
+    <div class="mt-2 col-2">
+      <button v-if="!logingOut" @click="showForm = !showForm" class="btn btn-info">
+        Toggle Form
+      </button>
+    </div>
     <form v-if="!logingOut && showForm" @submit.prevent="addNote()">
       <div class="mb-3">
         <br/>
@@ -39,14 +41,37 @@
           placeholder="Enter your note here." required
         ></textarea>
       </div>
-      <button type="submit" class="btn btn-success">
-        Add Note
-      </button>
+      <div class="mt-2">
+        <button type="submit" class="btn btn-success">
+          Add Note
+        </button>
+      </div>
     </form>
+    <section class="row mt-3">
+      <div
+        class="col-6"
+        v-for="note in notes"
+        :key="note._id"
+      >
+        <div
+          class="card text-white bg-dark mb-3">
+          <div class="card-header"><h2>{{note.title}}</h2></div>
+          <div class="card-body">
+            <p class="card-text" v-html="renderMarkdown(note.note)"/>
+          </div>
+        </div>
+      </div>
+    </section>
   </section>
 </template>
 
 <script>
+import MarkdownIt from 'markdown-it';
+import MDemoji from 'markdown-it-emoji';
+
+const md = new MarkdownIt();
+md.use(MDemoji);
+
 const API_URL = 'http://localhost:5000';
 export default {
   data: () => ({
@@ -57,6 +82,7 @@ export default {
       title: '',
       note: '',
     },
+    notes: [],
   }),
   mounted() {
     fetch(API_URL, {
@@ -68,22 +94,43 @@ export default {
       .then((result) => {
         if (result.user) {
           this.user = result.user;
+          this.getNotes();
         } else {
           this.logout();
         }
       });
   },
   methods: {
+    renderMarkdown(note) {
+      return md.render(note);
+    },
+    getNotes() {
+      fetch(`${API_URL}/api/v1/notes`, {
+        headers: {
+          authorization: `Bearer ${localStorage.token}`,
+        },
+      }).then((res) => res.json())
+        .then((notes) => {
+          this.notes = notes;
+        });
+    },
     addNote() {
-      fetch(`${API_URL}api/v1/notes`, {
-        method: 'post',
+      fetch(`${API_URL}/api/v1/notes`, {
+        method: 'POST',
         body: JSON.stringify(this.newNote),
         headers: {
           'content-type': 'application/json',
           authorization: `Bearer ${localStorage.token}`,
         },
       }).then((res) => res.json())
-        .then((note) => console.log(note));
+        .then((note) => {
+          this.notes.push(note);
+          this.newNote = {
+            title: '',
+            note: '',
+          };
+          this.showForm = false;
+        });
     },
     logout() {
       this.logingOut = true;
@@ -95,3 +142,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.card {
+  height: 90%;
+}
+.card-text img{
+  width: 100%;
+}
+</style>
