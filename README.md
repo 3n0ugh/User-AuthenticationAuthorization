@@ -29,7 +29,7 @@ information and notes.
   ```
   * Then create a TOKEN_SECRET using letters, numbers, and symbols.
     ```bash
-      TOKEN_SECRET=kwqejnrlkqwe%423%@#$^klsd;flka1
+      TOKEN_SECRET=kwqejnrlkqwe%423%@$^klsd;flka1
     ```
 * Run server
   ```bash
