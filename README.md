@@ -5,7 +5,7 @@
 ![](https://ocw.cs.pub.ro/courses/_media/se/labs/3-tier-architecture.png?w=600&tok=fa6eda)
 
 The API's server-side is built with Node.js and Express.js Framework, 
-client-side is built with Vue.js Framework. MongoDB using to store user 
+client-side is built with Vue.js Framework. MongoDB using to store user
 information and notes.
 
 ### Requirements
@@ -19,11 +19,11 @@ information and notes.
   ```bash
     git clone https://github.com/3n0ugh/User-Authentication-Authorization.git
   ```
-* Move to server folder and install npm packages for server.
+* Move to the server folder and install npm packages for server.
   ```bash
     npm install
   ```
-* Creating .env file in server folder.
+* Creating a .env file in the server folder.
   ```bash
     touch .env
   ```
@@ -35,7 +35,7 @@ information and notes.
   ```bash
     npm start
   ```
-* Move to the client folder and install npm packages for client.
+* Move to the client folder and install npm packages for the client.
   ```bash
     npm install
   ```
