@@ -10,7 +10,9 @@ const notes = require('./api/notes');
 
 const app = express();
 
+// HTTP Logger
 app.use(volleyball);
+// CORS
 app.use(
   cors({
     origin: 'http://localhost:8080',
