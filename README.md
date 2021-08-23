@@ -4,7 +4,7 @@
 
 ![](https://ocw.cs.pub.ro/courses/_media/se/labs/3-tier-architecture.png?w=600&tok=fa6eda)
 
-The API's server-side is built with Node.js and Express.js Framework, 
+The API's server-side is built with Express.js Framework of Node.js and 
 client-side is built with Vue.js Framework. MongoDB using to store user
 information and notes.
 
