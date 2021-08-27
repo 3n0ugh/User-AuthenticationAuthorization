@@ -10,8 +10,8 @@ information and notes.
 
 ### Requirements
 
-* MongoDB
-* Node
+* [MongoDB](https://www.mongodb.com/try/download/community)
+* [Node](https://nodejs.org/en/)
 
 ### Instructions
 
